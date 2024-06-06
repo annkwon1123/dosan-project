@@ -6,14 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Card Game</title>
     <style>
-        .placeholder{ /* 래퍼 */
-            display:grid;
-            grid-template-columns: repeat(var(--row),150px);
+        .container {
+            display: flex;
+        }
+
+        .placeholder { /* 카드 래퍼 */
+            display: grid;
+            grid-template-columns: repeat(var(--row), 150px);
             gap: 20px;
             perspective: 800px;
+            flex-grow: 1;
         }
-        
-        .placeholder > .card{ /* 카드 뒷면 */
+
+        .timer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            padding: 20px;
+        }
+
+        .thermometer {
+            position: relative;
+            width: 50px;
+            height: 300px;
+            background-color: #ccc;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .thermometer .level {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            transition: height 1s, background-color 1s;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .timer-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .placeholder > .card { /* 카드 뒷면 */
             background-image: url('./image/0.png');
             background-position: center;
             background-size: contain;
@@ -26,7 +71,8 @@
             transform: rotateY(180deg);
             text-align: center;
         }
-        .placeholder > .card::before{ /* 카드 앞면 */
+
+        .placeholder > .card::before { /* 카드 앞면 */
             background-image: url('./image/`{data-number}`.png');
             background-position: center;
             background-size: contain;
@@ -37,7 +83,7 @@
             line-height: 1.125;
             font-weight: bold;
             top: 50%;
-            transform: rotateY(180deg) translate(50%,-50%);
+            transform: rotateY(180deg) translate(50%, -50%);
             backface-visibility: hidden;
             background-color: #e8e8e8;
             color: #444;
@@ -50,31 +96,31 @@
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="2"]::before {
             background-image: url('./image/2.png');
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="3"]::before {
             background-image: url('./image/3.png');
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="4"]::before {
             background-image: url('./image/4.png');
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="5"]::before {
             background-image: url('./image/5.png');
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="6"]::before {
             background-image: url('./image/6.png');
             background-position: center;
@@ -86,55 +132,69 @@
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="8"]::before {
             background-image: url('./image/8.png');
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="9"]::before {
             background-image: url('./image/9.png');
             background-position: center;
             background-size: 100%;
         }
-        
+
         .placeholder > .card[data-number="10"]::before {
             background-image: url('./image/10.png');
             background-position: center;
             background-size: 100%;
         }
 
-        .placeholder .card.back{ /* 뒷면 표시 */
+        .placeholder .card.back { /* 뒷면 표시 */
             transition: transform .5s;
             transform: rotateY(0deg);
         }
-        .placeholder .card.front{ /* 클릭 후 앞면 표시 */
+
+        .placeholder .card.front { /* 클릭 후 앞면 표시 */
             display: block;
             transition: transform .5s;
             transform: rotateY(180deg);
         }
-        .placeholder .card.front::before{
+
+        .placeholder .card.front::before {
             visibility: visible;
         }
-        .placeholder .card.matched:before{ /* 매칭된 앞면 배경색 변경 */
+
+        .placeholder .card.matched::before { /* 매칭된 앞면 배경색 변경 */
             background-color: #673ab7;
             color: #fff;
         }
-        .placeholder > .card.back:hover{ /* 카드 마우스 호버 */
+
+        .placeholder > .card.back:hover { /* 카드 마우스 호버 */
             transform: scale(1.1);
             transition: transform 0.1s linear;
-            box-shadow: 1px 4px 15px -3px rgba(0,0,0,0.5);
+            box-shadow: 1px 4px 15px -3px rgba(0, 0, 0, 0.5);
         }
-        input[type=button]{
+
+        input[type=button] {
             padding: 5px 20px;
             margin: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="placeholder"></div>
-    <input type="button" name="init" value="다시 시작" onclick="doneFinding()">
+    <div class="container">
+        <div class="placeholder"></div>
+        <div class="timer-container">
+            <div class="thermometer">
+                <div id="thermo-level" class="level">
+                    <div id="timer-text" class="timer-text">60</div>
+                </div>
+            </div>
+            <input type="button" name="init" value="다시 시작" onclick="resetGame()">
+        </div>
+    </div>
     <script src="./memorycard.js"></script>    
 </body>
 </html>

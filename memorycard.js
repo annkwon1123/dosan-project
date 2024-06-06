@@ -111,5 +111,57 @@ function doneFinding() {
     if (confirm('찾기 완료! 데스크에서 상품을 수령해 주세요')) {
         reShuffle(true)
         initCard()
+        resetGame();
     }
 }
+
+let timeLeft = 60;
+const maxTime = 60;
+const thermoLevel = document.getElementById('thermo-level');
+const timerText = document.getElementById('timer-text');
+let timerInterval;
+
+function updateThermometer() {
+    const heightPercentage = (timeLeft / maxTime) * 100;
+    thermoLevel.style.height = `${heightPercentage}%`;
+    timerText.textContent = timeLeft;
+
+    if (timeLeft > 40) {
+        thermoLevel.style.backgroundColor = 'green';
+    } else if (timeLeft > 20) {
+        thermoLevel.style.backgroundColor = 'orange';
+    } else {
+        thermoLevel.style.backgroundColor = 'red';
+    }
+}
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateThermometer();
+        } else {
+            clearInterval(timerInterval);
+            alert('Game Over');
+            resetGame(); // 타이머가 0이 되었을 때 게임 초기화
+        }
+    }, 1000);
+}
+
+function resetGame() {
+    clearInterval(timerInterval);
+    timeLeft = maxTime;
+    updateThermometer();
+    startTimer();
+    // 게임을 초기화하는 추가 코드
+    reShuffle(true);
+    initCard();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateThermometer();
+    startTimer();
+    // 게임 초기화 관련 코드 추가
+    reShuffle(true);
+    initCard();
+});
