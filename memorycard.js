@@ -1,5 +1,6 @@
 let cardCount = 20, row = 5, column = Math.floor(cardCount/5), pair = -1, pairindex = -1 // 카드 개수, 행수, 맞는 짝 카운트용 변수
 let arrDeck = [] // 카드 배열
+let language = 0 // 0: 한국어, 1: 영어, 2: 중국어
 
 document.addEventListener('DOMContentLoaded', () => {
     cardCount = row * column // 가로*세로 개수를 무조건 맞춤
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // UI 생성
     for (let i = 0; i < cardCount; i++) {
         let el = document.createElement('div')
-        el.id = 'card' + i
+        el.id = 'card' + i + (10 * language);
         el.classList.add('card')
         el.classList.add('back')
         document.querySelector('.placeholder').appendChild(el)
@@ -68,7 +69,7 @@ function initCard() {
     // 카드에 셔플 숫자 지정
     for (let i = 0; i < cardCount; i++) {
         document.querySelectorAll('.placeholder .card').forEach((card, idx) => {
-            card.dataset.number = arrDeck[idx]
+            card.dataset.number = arrDeck[idx] + (10*language)
             card.dataset.index = idx
         })
     }
@@ -140,11 +141,19 @@ function startTimer() {
         if (timeLeft > 0) {
             timeLeft--;
             updateThermometer();
-        } else {
+        } else if(language == 0) {
+            clearInterval(timerInterval);
+            alert('시간 초과');
+            resetGame(); // 타이머가 0이 되었을 때 게임 초기화
+        } else if(language == 1) {
             clearInterval(timerInterval);
             alert('Game Over');
             resetGame(); // 타이머가 0이 되었을 때 게임 초기화
-        }
+        } else if(language == 2) {
+            clearInterval(timerInterval);
+            alert('暂停');
+            resetGame(); // 타이머가 0이 되었을 때 게임 초기화
+        }  
     }, 1000);
 }
 
@@ -153,6 +162,39 @@ function resetGame() {
     timeLeft = maxTime;
     updateThermometer();
     startTimer();
+    // 게임을 초기화하는 추가 코드
+    reShuffle(true);
+    initCard();
+}
+
+function resetGameAndChangeKorean() {
+    clearInterval(timerInterval);
+    timeLeft = maxTime;
+    updateThermometer();
+    startTimer();
+    language = 0;
+    // 게임을 초기화하는 추가 코드
+    reShuffle(true);
+    initCard();
+}
+
+function resetGameAndChangeEnglish() {
+    clearInterval(timerInterval);
+    timeLeft = maxTime;
+    updateThermometer();
+    startTimer();
+    language = 1;
+    // 게임을 초기화하는 추가 코드
+    reShuffle(true);
+    initCard();
+}
+
+function resetGameAndChangeChinese() {
+    clearInterval(timerInterval);
+    timeLeft = maxTime;
+    updateThermometer();
+    startTimer();
+    language = 2;
     // 게임을 초기화하는 추가 코드
     reShuffle(true);
     initCard();

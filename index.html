@@ -151,6 +151,125 @@
             background-size: 100%;
         }
 
+        .placeholder > .card[data-number="11"]::before {
+            background-image: url('./image/11.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="12"]::before {
+            background-image: url('./image/12.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="13"]::before {
+            background-image: url('./image/13.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="14"]::before {
+            background-image: url('./image/14.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="15"]::before {
+            background-image: url('./image/15.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="16"]::before {
+            background-image: url('./image/16.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="17"]::before {
+            background-image: url('./image/17.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="18"]::before {
+            background-image: url('./image/18.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="19"]::before {
+            background-image: url('./image/19.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="20"]::before {
+            background-image: url('./image/20.png');
+            background-position: center;
+            background-size: 100%;
+        }
+        .placeholder > .card[data-number="21"]::before {
+            background-image: url('./image/21.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="22"]::before {
+            background-image: url('./image/22.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="23"]::before {
+            background-image: url('./image/23.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="24"]::before {
+            background-image: url('./image/24.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="25"]::before {
+            background-image: url('./image/25.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="26"]::before {
+            background-image: url('./image/26.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="27"]::before {
+            background-image: url('./image/27.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="28"]::before {
+            background-image: url('./image/28.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="29"]::before {
+            background-image: url('./image/29.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .placeholder > .card[data-number="30"]::before {
+            background-image: url('./image/30.png');
+            background-position: center;
+            background-size: 100%;
+        }
+
         .placeholder .card.back { /* 뒷면 표시 */
             transition: transform .5s;
             transform: rotateY(0deg);
@@ -178,9 +297,22 @@
         }
 
         input[type=button] {
+            width: 150px;
             padding: 5px 20px;
-            margin: 20px;
+            margin: 10px;
+            background-color: #673ab7;
+            color: #fff;
         }
+        
+        .info-text {
+            width: 100%;
+            text-align: center;
+            color: green;
+            font-size: 1.0rem;
+            transform: translateY(-50%);
+            margin: 40px;
+        }
+
     </style>
 </head>
 <body>
@@ -192,7 +324,11 @@
                     <div id="timer-text" class="timer-text">60</div>
                 </div>
             </div>
-            <input type="button" name="init" value="다시 시작" onclick="resetGame()">
+            <div class="info-text">TEAM 사사삭</div>
+            <input type="button" name="init" value=" 다시 시작 " onclick="resetGame()">
+            <input type="button" name="language" value="한국어 KOR" onclick="resetGameAndChangeKorean()">
+            <input type="button" name="language" value="영 어 ENG" onclick="resetGameAndChangeEnglish()">
+            <input type="button" name="language" value="중국어 CHN" onclick="resetGameAndChangeChinese()">
         </div>
     </div>
     <script src="./memorycard.js"></script>    
