@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Card Game</title>
     <style>
+        body {
+            background-image: url('./image/background.png');
+            background-position: center;
+            background-size: contain;
+            margin: 50px;
+        }
+
         .container {
             display: flex;
         }
@@ -28,10 +35,13 @@
         }
 
         .thermometer {
-            position: relative;
-            width: 50px;
-            height: 300px;
-            background-color: #ccc;
+            position: fixed;
+            bottom: 172px;
+            right: 82.5px;
+
+            width: 37px;
+            height: 630px;
+            background-color: #e163353c;
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -59,7 +69,7 @@
         }
 
         .placeholder > .card { /* 카드 뒷면 */
-            background-image: url('./image/0.png');
+            background-image: url('./image/0.gif');
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;
@@ -296,49 +306,63 @@
             box-shadow: 1px 4px 15px -3px rgba(0, 0, 0, 0.5);
         }
 
-        input[type=button1] {
+        /* CSS 코드 */
+        <!-- button.button1 {
             background-image: url('./image/31.png');
             background-position: center;
             background-size: 100%;
+            position: fixed;
+            bottom: 70px;
+            right: 680px;
+
             width: 150px;
+            height: 30px;
             padding: 5px 20px;
             margin: 10px;
-            background-color: #673ab7;
-            color: #fff;
-        }
-        
-        input[type=button2] {
+        } -->
+
+        button.button2 {
             background-image: url('./image/32.png');
             background-position: center;
             background-size: 100%;
-            width: 150px;
+            border-radius: 26px;
+            position: fixed;
+            bottom: 58px;
+            right: 676px;
+            width: 83px;
+            height: 48px;
             padding: 5px 20px;
             margin: 10px;
-            background-color: #673ab7;
-            color: #fff;
         }
 
-        input[type=button3] {
+        button.button3 {
             background-image: url('./image/33.png');
             background-position: center;
             background-size: 100%;
-            width: 150px;
+            border-radius: 26px;
+            position: fixed;
+            bottom: 58px;
+            right: 590px;
+            width: 83px;
+            height: 48px;
             padding: 5px 20px;
             margin: 10px;
-            background-color: #673ab7;
-            color: #fff;
         }
 
-        input[type=button4] {
+        button.button4 {
             background-image: url('./image/34.png');
             background-position: center;
             background-size: 100%;
-            width: 150px;
+            border-radius: 26px;
+            position: fixed;
+            bottom: 58px;
+            right: 500px;
+            width: 83px;
+            height: 48px;
             padding: 5px 20px;
             margin: 10px;
-            background-color: #673ab7;
-            color: #fff;
         }
+
         .info-text {
             width: 100%;
             text-align: center;
@@ -353,18 +377,20 @@
 <body>
     <div class="container">
         <div class="placeholder"></div>
+        
         <div class="timer-container">
+            
+
+    <!-- HTML 코드 -->
+    <button class="button2" onclick="resetGameAndChangeKorean()"/>
+    <button class="button3" onclick="resetGameAndChangeEnglish()"/>
+    <button class="button4" onclick="resetGameAndChangeChinese()"/>
+</div>
             <div class="thermometer">
                 <div id="thermo-level" class="level">
                     <div id="timer-text" class="timer-text">60</div>
                 </div>
             </div>
-            <div class="info-text">TEAM 사사삭</div>
-            <input type="button1" name=" 다시 시작" onclick="resetGame()">
-            <input type="button2" name="한국어 KOR" onclick="resetGameAndChangeKorean()">
-            <input type="button3" name="영 어 ENG" onclick="resetGameAndChangeEnglish()">
-            <input type="button4" name="중국어 CHN" onclick="resetGameAndChangeChinese()">
-        </div>
     </div>
     <script src="./memorycard.js"></script>    
 </body>

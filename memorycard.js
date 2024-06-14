@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.querySelectorAll('.placeholder .card.front:not(.matched)').forEach((card) => {
                             card.classList.remove('front')
                             card.classList.add('back')
-                            card.style.backgroundImage = 'url("./image/0.png")' // 뒷면 이미지로 재설정
+                            card.style.backgroundImage = 'url("./image/0.gif")' // 뒷면 이미지로 재설정
                         })
                         pair = -1
                         pairindex = -1
@@ -81,7 +81,7 @@ function initCard() {
             card.classList.remove('front')
             card.classList.remove('matched')
             card.classList.add('back')
-            card.style.backgroundImage = 'url("./image/0.png")' // 뒷면 이미지로 재설정
+            card.style.backgroundImage = 'url("./image/0.gif")' // 뒷면 이미지로 재설정
         } else {
             window.clearInterval(init)
         }
